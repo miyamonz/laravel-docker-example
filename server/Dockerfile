@@ -27,3 +27,5 @@ COPY --from=composer /app/vendor/ /var/www/vendor/
 
 # copy the Composer PHAR from the Composer image into the PHP image
 COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+RUN docker-php-ext-install pdo_mysql

@@ -20,6 +20,8 @@ services:
       MYSQL_DATABASE: kaiba
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
 volumes:
   vendor:
     driver: local
