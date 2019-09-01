@@ -20,4 +20,10 @@ RUN composer install \
 FROM php:fpm
 WORKDIR /var/www/
 COPY . /var/www/
+
+
+# copy vendor folder
 COPY --from=composer /app/vendor/ /var/www/vendor/
+
+# copy the Composer PHAR from the Composer image into the PHP image
+COPY --from=composer /usr/bin/composer /usr/bin/composer
