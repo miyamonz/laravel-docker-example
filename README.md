@@ -18,6 +18,7 @@ $ docker-compose up
 and access to http://localhost:8080
 
 when you run composer or php artisan
+
 $ docker-compose exec app ash
 
 and run commands.
