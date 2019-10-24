@@ -8,6 +8,8 @@ services:
   app:
     build:
       context: ./laravel
+    depends_on:
+      - db
   db:
     build:
       context: mysql
