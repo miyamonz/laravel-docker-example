@@ -39,5 +39,8 @@ COPY . /var/www/
 
 FROM php-fpm AS php-fpm-prod
 COPY --from=vendor-prod /app/vendor/ /var/www/vendor/
+COPY --from=laravel-docker-example_node /code/public/js /var/www/public/js
+COPY --from=laravel-docker-example_node /code/public/css /var/www/public/css
+COPY --from=laravel-docker-example_node /code/public/mix-manifest.json /var/www/public/
 COPY . /var/www/
 
