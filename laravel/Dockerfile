@@ -1,5 +1,6 @@
 FROM composer:1.9 AS composer
 
+FROM composer AS vendor
 # make composer fast in japan
 RUN composer config -g repositories.packagist composer https://packagist.jp
 RUN composer global require hirak/prestissimo
@@ -20,8 +21,8 @@ RUN composer install \
 FROM php:7.3-fpm-alpine3.8 AS php-fpm
 RUN docker-php-ext-install pdo_mysql
 WORKDIR /var/www/
-COPY . /var/www/
 # copy the Composer PHAR from the Composer image into the PHP image
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-COPY --from=composer /app/vendor/ /var/www/vendor/
+COPY --from=vendor /app/vendor/ /var/www/vendor/
+COPY . /var/www/
