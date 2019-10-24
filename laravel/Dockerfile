@@ -24,6 +24,7 @@ ARG COMPOSER_OPTION
 RUN composer install ${COMPOSER_OPTION}
 
 FROM vendor AS vendor-prod
+ARG COMPOSER_OPTION
 RUN composer install --no-dev ${COMPOSER_OPTION}
 
 FROM php:7.3-fpm-alpine3.8 AS php-fpm
@@ -36,7 +37,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY --from=vendor-dev /app/vendor/ /var/www/vendor/
 COPY . /var/www/
 
-FROM php-fpm AS php-fpm-dev
+FROM php-fpm AS php-fpm-prod
 COPY --from=vendor-prod /app/vendor/ /var/www/vendor/
 COPY . /var/www/
 
