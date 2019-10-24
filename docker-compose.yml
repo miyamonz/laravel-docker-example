@@ -5,13 +5,13 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./server/public:/var/www/public
+      - ./laravel/public:/var/www/public
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
   app:
     build:
-      context: ./server
+      context: ./laravel
     volumes:
-      - ./server:/var/www
+      - ./laravel:/var/www
       - vendor:/var/www/vendor
   db:
     image: mysql:8
