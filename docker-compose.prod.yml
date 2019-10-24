@@ -10,10 +10,7 @@ services:
       - node
   db:
     environment:
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: laravel-docker-example
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
   node:
     build:
       context: laravel
