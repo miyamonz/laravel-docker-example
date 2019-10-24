@@ -18,6 +18,9 @@ services:
       MYSQL_PASSWORD: password
     volumes:
       - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - mysql:/var/lib/mysql
 volumes:
   vendor:
+    driver: local
+  mysql:
     driver: local
