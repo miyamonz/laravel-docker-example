@@ -1,11 +1,13 @@
 version: '3.7'
 services:
   nginx:
-    image: nginx:alpine
+    build:
+      context: nginx
     depends_on:
       - app
   app:
     build:
       context: ./laravel
   db:
-    image: mysql:8
+    build:
+      context: mysql
