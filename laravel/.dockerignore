@@ -1,5 +1,11 @@
+.dockerignore
 vendor
 storage/framework/cache/**
 storage/framework/sessions/**
 storage/framework/views/**
 node_modules
+.env
+
+public/js
+public/css
+public/mix-manifest.json
