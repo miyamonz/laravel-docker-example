@@ -17,15 +17,11 @@ RUN composer install \
         --no-scripts \
         --prefer-dist
 
-FROM php:fpm
+FROM php:7.3-fpm-alpine3.8 AS php-fpm
+RUN docker-php-ext-install pdo_mysql
 WORKDIR /var/www/
 COPY . /var/www/
-
-
-# copy vendor folder
-COPY --from=composer /app/vendor/ /var/www/vendor/
-
 # copy the Composer PHAR from the Composer image into the PHP image
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-RUN docker-php-ext-install pdo_mysql
+COPY --from=composer /app/vendor/ /var/www/vendor/
