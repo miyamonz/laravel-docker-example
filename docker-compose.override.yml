@@ -19,7 +19,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-u", "user", "-pppassword"]
+      test: "CMD mysqladmin ping -u user -pppassword || exit 1"
       timeout: 20s
       retries: 10
     volumes:
