@@ -23,7 +23,7 @@ jobs:
       - run:
           command: docker-compose run --rm node npm test
           name: npm test
-      - run: docker-compose run --rm app php artisan migrate
+          #- run: docker-compose run --rm app php artisan migrate
       - run: mkdir -p ~/caches
       - run:
           command: |
