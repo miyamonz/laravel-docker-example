@@ -28,6 +28,6 @@ jobs:
             fi
           name: docker save
       - save_cache:
-            - v1-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
+          key: v1-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
           paths:
             - ~/caches/images.tar
