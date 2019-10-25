@@ -1,7 +1,8 @@
-version: 2
+version: 2.1
 jobs:
   build:
-    machine: true
+    machine:
+      image: circleci/classic:edge
     steps:
       - checkout
       - restore_cache:
