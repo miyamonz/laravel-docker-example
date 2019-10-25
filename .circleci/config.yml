@@ -16,6 +16,7 @@ jobs:
               docker load -i ~/caches/images.tar
             fi
           name: docker load
+      - run: cp .env.local .env
       - run:
           command: docker-compose run --rm node npm test
           name: npm test
