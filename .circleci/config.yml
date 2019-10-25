@@ -4,6 +4,7 @@ jobs:
     machine:
       image: circleci/classic:edge
     steps:
+      - run: type docker-compose
       - run:
           name: Install Docker Compose
           command: |
