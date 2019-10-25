@@ -2,10 +2,8 @@ version: 2.1
 jobs:
   build:
     machine:
-      image: circleci/classic:edge
+      image: circleci/classic:201808-01
     steps:
-      - setup_remote_docker:
-          version: 18.09.3
       - run: type docker-compose
       - run: docker -v
       - run: docker-compose -v
