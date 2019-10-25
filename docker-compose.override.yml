@@ -18,6 +18,10 @@ services:
       MYSQL_DATABASE: laravel-docker-example
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-u", "user", "-pppassword"]
+      timeout: 20s
+      retries: 10
     volumes:
       - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - mysql:/var/lib/mysql
