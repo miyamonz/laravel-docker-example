@@ -20,11 +20,7 @@ jobs:
             fi
           name: docker load
       - run: cp .env.local .env
-      - run:
-          command: docker-compose run --rm node npm test
-          name: npm test
-          #- run: docker-compose run --rm app php artisan migrate
-      - run: mkdir -p ~/caches
+      - run: docker-compose build
       - run:
           command: |
             if [[ ! -e ~/caches/images.tar ]]; then
@@ -35,3 +31,10 @@ jobs:
           key: v1-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
           paths:
             - ~/caches/images.tar
+
+      - run: cp laravel/.env{.example,}
+      - run:
+          command: docker-compose run --rm node npm test
+          name: npm test
+      - run: docker-compose run --rm app php artisan migrate
+      - run: mkdir -p ~/caches
