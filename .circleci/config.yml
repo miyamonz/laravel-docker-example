@@ -37,7 +37,7 @@ jobs:
 
       - run: cp laravel/.env{.example,}
       - run: docker-compose up -d
-      - run: docker-compose exec db mysqladmin ping -u user -ppassword
+      - run: docker-compose exec db mysqladmin ping -u user -ppassword -h localhost
       - run:
           command: docker-compose exec node npm test
           name: npm test
