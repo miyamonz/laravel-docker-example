@@ -39,12 +39,10 @@ jobs:
       - run: docker-compose up -d
       - run: |
           docker-compose exec db bash -c "
-          for i in `seq 1 10` ; do
-            (mysqladmin ping -u user -ppassword --protocol tcp)  && echo Success && exit 0
-            echo -n .
-            sleep 1
+          until (mysqladmin ping -u user -ppassword --protocol tcp) ; do
+            echo .
+            sleep 5
           done
-          echo Failed waiting for db && exit 1
           "
       - run:
           command: docker-compose exec node npm test
