@@ -11,7 +11,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
+            - v3-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
           paths:
             - ~/caches/images.tar
       - run:
@@ -31,7 +31,7 @@ jobs:
             fi
           name: docker save
       - save_cache:
-          key: v2-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
+          key: v3-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
           paths:
             - ~/caches/images.tar
 
