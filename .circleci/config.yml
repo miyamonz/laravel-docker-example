@@ -22,6 +22,7 @@ jobs:
           name: docker load
       - run: cp .env.local .env
       - run: docker-compose build
+      - run: mkdir -p ~/caches
       - run:
           command: |
             if [[ ! -e ~/caches/images.tar ]]; then
@@ -34,8 +35,9 @@ jobs:
             - ~/caches/images.tar
 
       - run: cp laravel/.env{.example,}
+      - run: docker-compose up -d
       - run:
-          command: docker-compose run --rm node npm test
+          command: docker-compose exec node npm test
           name: npm test
-      - run: docker-compose run --rm app php artisan migrate
-      - run: mkdir -p ~/caches
+      - run: docker-compose exec app php artisan migrate
+      - run: docker-compose down
