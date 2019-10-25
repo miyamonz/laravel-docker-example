@@ -11,7 +11,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v3-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
+            - v3
           paths:
             - ~/caches/images.tar
       - run:
@@ -31,13 +31,13 @@ jobs:
             fi
           name: docker save
       - save_cache:
-          key: v3-{{ checksum "laravel/composer.lock" }}-{{ checksum "laravel/package-lock.json" }}
+          key: v3
           paths:
             - ~/caches/images.tar
 
       - run: cp laravel/.env{.example,}
       - run: docker-compose up -d
-      - run: docker-compose exec eb mysqladmin ping -u user -ppassword
+      - run: docker-compose exec db mysqladmin ping -u user -ppassword
       - run:
           command: docker-compose exec node npm test
           name: npm test
