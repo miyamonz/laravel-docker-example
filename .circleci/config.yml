@@ -39,5 +39,6 @@ jobs:
       - run:
           command: docker-compose exec node npm test
           name: npm test
+      - run: docker-compose exec app php artisan key:generate
       - run: docker-compose exec app php artisan migrate
       - run: docker-compose down
