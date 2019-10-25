@@ -19,7 +19,8 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     healthcheck:
-      test: "CMD mysqladmin ping -u user -pppassword --protocol tcp || exit 1"
+      test: "CMD mysqladmin ping -u user -pppassword --protocol tcp"
+      interval: 5s
       timeout: 20s
       retries: 10
     volumes:
