@@ -1,0 +1,12 @@
+name: run tests
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: docker-compose up
+        run: docker-compose up -d
+      - name: run test
+        run: docker-compose exec laravel composer test
+
