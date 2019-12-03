@@ -9,6 +9,15 @@ jobs:
         run: make install
       - name: docker-compose up
         run: docker-compose up -d
+      - name: wait until db is ready
+        run: docker-compose run --rm app ash -c "
+        while ! nc -z db 3306;
+        do
+          echo sleeping;
+          sleep 1;
+        done;
+        echo Connected!;
+      "
       - name: run test
         run: docker-compose exec laravel composer test
 
