@@ -8,5 +8,5 @@ jobs:
       - name: make install
         run: make install
       - name: run test
-        run: docker-compose exec laravel composer test
+        run: docker-compose exec app composer test
 
