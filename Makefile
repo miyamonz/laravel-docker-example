@@ -3,7 +3,7 @@ install:
 	cd laravel && cp .env.example .env
 	docker-compose build
 	docker-compose up -d
-	docker-compose run --rm app ash -c " while ! nc -z db 3306; do echo sleeping; sleep 1; done; echo Connected!; "
+	docker-compose run --rm app ash -c " until nc -z db 3306; do echo sleeping; sleep 1; done; echo Connected!; "
 	docker-compose exec -T app php artisan key:generate
 	docker-compose exec -T app php artisan migrate
 
